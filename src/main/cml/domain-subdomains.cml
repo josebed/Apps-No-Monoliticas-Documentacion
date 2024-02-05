@@ -1,0 +1,72 @@
+/* Domain and Subdomains PDA */
+
+Domain ProveerInformacionPropiedadesClientes {
+  domainVisionStatement = "El modelo representará la información más valiosa y verídica de bienes raíces comerciales para los clientes, de una manera resumida, ordenada y actualizada, que les permitirá tomar decisiones acertadas sobre sus intereses en diferentes propiedades. De esta manera, se verán reflejadas las características principales de propiedades inmobiliarias en diferentes geografías del mundo, su disponibilidad para venta y alquiler e información relevante sobre precios del mercado, basado en transacciones recientes de compraventa y arrendamiento, apoyándose en sistemas de información públicos y de referenciación geográfica, así como de información colectada mediante trabajo de campo, redes sociales, medios de comunicación especializados y comunicación con arrendatarios, propietarios, agentes inmobiliarios y demás actores del mercado. Adicionalmente, según los roles e intereses de los clientes y agentes, podrán acceder a diferentes niveles de información, respetando las leyes de manejo de datos y privacidad de cada país/región. De otro lado agentes de la compañía serán parte esencial en la colección, validación y actualización de la información de los bienes raíces y contarán con medios eficientes para la ejecución de dichas actividades. Dado que la veracidad de la información es crítica para mantener la confianza de los clientes y garantizarles que toman las decisiones basadas en la mejor información disponible, el modelo también soportará la auditoría continua de la información."
+
+  Subdomain RecopilacionInformacionEstructurasFisicas {
+    type = CORE_DOMAIN    
+
+  }
+
+  Subdomain InvestigacionDisponibilidadPropiedades {
+    type = CORE_DOMAIN    
+  }
+
+  Subdomain InvestigacionTransacciones {
+    type = CORE_DOMAIN
+    
+  }
+
+  Subdomain InvestigacionInformacionInquilinos {
+    type = CORE_DOMAIN
+   
+  }
+
+  Subdomain ComparativoVentasPropiedades {
+    type = CORE_DOMAIN
+    
+  }
+
+
+
+  Subdomain AnalisisVentasAlquileresUbicacionGeografica {
+    type = CORE_DOMAIN
+    
+  }
+
+  Subdomain ComunicacionAgentesInmobiliariosPropietarios {
+    type = SUPPORTING_DOMAIN
+    
+  }
+
+  Subdomain GestionInformacionFisicaPropiedades {
+    type = GENERIC_SUBDOMAIN
+    
+  }
+
+  Subdomain InspeccionInformacionRegistradaEstructuras {
+    type = SUPPORTING_DOMAIN
+    
+  }
+
+  Subdomain EnriquecimientoVerificacionInformacionColectada {
+    type = SUPPORTING_DOMAIN
+    
+  }
+
+  Subdomain CapturaLimpiezaProcesamientoDatos {
+    type = GENERIC_SUBDOMAIN
+    
+  }
+
+  Subdomain ValidacionAutomatizadaDatos {
+    type = GENERIC_SUBDOMAIN
+    
+  }
+
+  Subdomain AuditoriaDatos {
+    type = SUPPORTING_DOMAIN
+    
+  }
+
+}
