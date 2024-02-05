@@ -1,0 +1,115 @@
+/* The DDD Cargo sample application modeled in CML. Note that we split the application into multiple bounded contexts. */
+ContextMap DDDContextMapPDA_TOBE {
+	contains InvestigaciondeDisponibilidadContext
+	contains InvestigaciondeTransaccionesContext
+	contains InvestigaciondeInquilinosContext
+	contains SistemadeAlmacenamientoContext
+	contains CapturadeDatosPullContext
+	contains CapturadeDatosPushContext
+	contains LimpiezayProcesamientodeDatosContext
+	contains AuditoriadeDatosContext
+	contains EnriquecimientoyVerificaciondeDatosContext
+	contains ValidacionAutomatizadadeDatosContext
+	contains AnalisisdeVentasdePropiedadesContext
+	contains AnalisisdeAlquilerdePropiedadesContext
+	contains ComparativodeVentasdePropiedadesContext
+	contains RecopilaciondeInformaciondePropiedadesContext
+	contains GestiondeInformaciondePropiedadesContext
+
+	InvestigaciondeDisponibilidadContext [SK]<->[SK] InvestigaciondeTransaccionesContext
+
+	InvestigaciondeInquilinosContext [SK]<->[SK] InvestigaciondeDisponibilidadContext
+
+	CapturadeDatosPullContext [SK]<->[SK] CapturadeDatosPushContext
+	
+	InvestigaciondeDisponibilidadContext [D, ACL]<-[U] CapturadeDatosPullContext
+
+	InvestigaciondeTransaccionesContext [D, ACL]<-[U] CapturadeDatosPullContext
+
+	InvestigaciondeInquilinosContext [D, ACL]<-[U] CapturadeDatosPullContext
+
+	CapturadeDatosPushContext [D, ACL]<-[U, OHS] SistemadeAlmacenamientoContext
+
+	SistemadeAlmacenamientoContext [D]<-[U] RecopilaciondeInformaciondePropiedadesContext
+
+	CapturadeDatosPullContext [D]<-[U] RecopilaciondeInformaciondePropiedadesContext
+
+	RecopilaciondeInformaciondePropiedadesContext [D]<-[U] GestiondeInformaciondePropiedadesContext
+
+	GestiondeInformaciondePropiedadesContext [D]<-[U] EnriquecimientoyVerificaciondeDatosContext
+
+	EnriquecimientoyVerificaciondeDatosContext [D]<-[U, OHS] SistemadeAlmacenamientoContext
+
+	SistemadeAlmacenamientoContext [D]<-[U] LimpiezayProcesamientodeDatosContext
+
+	LimpiezayProcesamientodeDatosContext [D]<-[U] ValidacionAutomatizadadeDatosContext
+
+	ValidacionAutomatizadadeDatosContext [D]<-[U] AuditoriadeDatosContext
+
+	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeVentasdePropiedadesContext
+
+	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeAlquilerdePropiedadesContext
+
+	AuditoriadeDatosContext [D]<-[U, OHS] ComparativodeVentasdePropiedadesContext
+}
+
+BoundedContext InvestigaciondeDisponibilidadContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext InvestigaciondeTransaccionesContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext InvestigaciondeInquilinosContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext SistemadeAlmacenamientoContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+//BoundedContext CapturadeDatosManualContext ya tenemos el metodo pull donde se engloba la captura manual de datos
+BoundedContext CapturadeDatosPullContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext CapturadeDatosPushContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext AuditoriadeDatosContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext LimpiezayProcesamientodeDatosContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext EnriquecimientoyVerificaciondeDatosContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext ValidacionAutomatizadadeDatosContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+//BoundedContext MachineLearningContext ya tenemos un contexto para validacion automatizada de datos
+BoundedContext AnalisisdeVentasdePropiedadesContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext AnalisisdeAlquilerdePropiedadesContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext ComparativodeVentasdePropiedadesContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext RecopilaciondeInformaciondePropiedadesContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
+
+BoundedContext GestiondeInformaciondePropiedadesContext{
+	domainVisionStatement = "This context is responsible for ..."
+}
