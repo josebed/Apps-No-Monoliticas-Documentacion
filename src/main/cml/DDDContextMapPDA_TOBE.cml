@@ -15,12 +15,10 @@ ContextMap DDDContextMapPDA_TOBE {
 	contains ComparativodeVentasdePropiedadesContext
 	contains RecopilaciondeInformaciondePropiedadesContext
 	contains GestiondeInformaciondePropiedadesContext
-
-	InvestigaciondeDisponibilidadContext [SK]<->[SK] InvestigaciondeTransaccionesContext
-
-	InvestigaciondeInquilinosContext [SK]<->[SK] InvestigaciondeDisponibilidadContext
-
-	CapturadeDatosPullContext [SK]<->[SK] CapturadeDatosPushContext
+	contains EstandarizaciondeDatosContext
+	contains SistemadeAlmacenamientodeDatosRefinadosContext
+	contains NormalizaciondeDatosContext
+	contains InternacionalizacionContext
 	
 	InvestigaciondeDisponibilidadContext [D, ACL]<-[U] CapturadeDatosPullContext
 
@@ -30,86 +28,107 @@ ContextMap DDDContextMapPDA_TOBE {
 
 	CapturadeDatosPushContext [D, ACL]<-[U, OHS] SistemadeAlmacenamientoContext
 
-	SistemadeAlmacenamientoContext [D]<-[U] RecopilaciondeInformaciondePropiedadesContext
+	CapturadeDatosPullContext [D, ACL]<-[U, OHS] SistemadeAlmacenamientoContext
 
-	CapturadeDatosPullContext [D]<-[U] RecopilaciondeInformaciondePropiedadesContext
+	SistemadeAlmacenamientoContext [D, ACL]<-[U] EstandarizaciondeDatosContext
+
+	EstandarizaciondeDatosContext [D]<-[U] RecopilaciondeInformaciondePropiedadesContext
 
 	RecopilaciondeInformaciondePropiedadesContext [D]<-[U] GestiondeInformaciondePropiedadesContext
 
 	GestiondeInformaciondePropiedadesContext [D]<-[U] EnriquecimientoyVerificaciondeDatosContext
 
-	EnriquecimientoyVerificaciondeDatosContext [D]<-[U, OHS] SistemadeAlmacenamientoContext
+	EnriquecimientoyVerificaciondeDatosContext [D]<-[U, OHS] NormalizaciondeDatosContext 
+	
+	NormalizaciondeDatosContext [D]<-[U, OHS] SistemadeAlmacenamientodeDatosRefinadosContext
 
-	SistemadeAlmacenamientoContext [D]<-[U] LimpiezayProcesamientodeDatosContext
+	SistemadeAlmacenamientodeDatosRefinadosContext [D]<-[U] LimpiezayProcesamientodeDatosContext
 
 	LimpiezayProcesamientodeDatosContext [D]<-[U] ValidacionAutomatizadadeDatosContext
 
 	ValidacionAutomatizadadeDatosContext [D]<-[U] AuditoriadeDatosContext
 
-	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeVentasdePropiedadesContext
+	AuditoriadeDatosContext [D]<-[U, OHS] InternacionalizacionContext
 
-	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeAlquilerdePropiedadesContext
+	InternacionalizacionContext [D]<-[U, OHS] AnalisisdeVentasdePropiedadesContext
 
-	AuditoriadeDatosContext [D]<-[U, OHS] ComparativodeVentasdePropiedadesContext
+	InternacionalizacionContext [D]<-[U, OHS] AnalisisdeAlquilerdePropiedadesContext
+
+	InternacionalizacionContext [D]<-[U, OHS] ComparativodeVentasdePropiedadesContext
 }
 
 BoundedContext InvestigaciondeDisponibilidadContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de la investigacion de la disponibilidad de las propiedades y de enviar la informacion recolectada a la base de datos de investigacion."
 }
 
 BoundedContext InvestigaciondeTransaccionesContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de la investigacion de las transacciones en las propiedades y de enviar la informacion recolectada a la base de datos de investigacion."
 }
 
 BoundedContext InvestigaciondeInquilinosContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de la investigacion de los inquilinos de las propiedades y de enviar la informacion recolectada a la base de datos de investigacion."
 }
 
 BoundedContext SistemadeAlmacenamientoContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de almacenar los datos obtenidos de todas las formas posibles por los agentes."
 }
 
-//BoundedContext CapturadeDatosManualContext ya tenemos el metodo pull donde se engloba la captura manual de datos
+BoundedContext SistemadeAlmacenamientodeDatosRefinadosContext{
+	domainVisionStatement = "Este contexto es responsable de recibir la informacion enriquecida, normalizada y verificada por los investigadores de campo y especializados."
+}
+
+BoundedContext NormalizaciondeDatosContext{
+	domainVisionStatement = "Este contexto es responsable de ajustar los valores de las variables para que estén en un rango específico."
+}
+
 BoundedContext CapturadeDatosPullContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de recibir la informacion suministrada sobre las propiedades por un agente, ya sea de forma manual o automatizada y enviar los datos a la base de datos de investigacion."
 }
 
 BoundedContext CapturadeDatosPushContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de recibir la informacion suministrada por distintas entidades a la api, bucket o ftp de pda y cargar los datos en el sistema de almacenamiento."
 }
 
 BoundedContext AuditoriadeDatosContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de la revision final de la informacion sobre las propiedades y de aprobar su visualizacion de la informacion a los clientes segun el indice de confiabilidad delimitado por pda."
 }
 
 BoundedContext LimpiezayProcesamientodeDatosContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de la limpieza de los datos almacenados en el sistema de almacenamiento y de su posterior procesamiento."
 }
 
 BoundedContext EnriquecimientoyVerificaciondeDatosContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de verificar y segun la verificacion enriquecer los datos alamcenados en la base de datos de investigacion."
 }
 
 BoundedContext ValidacionAutomatizadadeDatosContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de validar los datos de forma automatizada usando tecnicas de machine learning y tambien bots."
 }
-//BoundedContext MachineLearningContext ya tenemos un contexto para validacion automatizada de datos
+
 BoundedContext AnalisisdeVentasdePropiedadesContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de proveer a los clientes un analisis de la venta de propiedades en una ubicacion geografica especifica segun la informacion validada por auditoria y almacenada en el sistema de almacenamiento."
 }
 
 BoundedContext AnalisisdeAlquilerdePropiedadesContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de proveer a los clientes un analisis de los alquileres de propiedades en una ubicacion geografica especifica segun la informacion validada por auditoria y almacenada en el sistema de almacenamiento."
 }
 
 BoundedContext ComparativodeVentasdePropiedadesContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de proveer a los clientes un comparativo de ventas de las propiedades."
 }
 
 BoundedContext RecopilaciondeInformaciondePropiedadesContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de recopilar la informacion faltante de las propiedades y enviarla para su gestionamiento."
 }
 
 BoundedContext GestiondeInformaciondePropiedadesContext{
-	domainVisionStatement = "This context is responsible for ..."
+	domainVisionStatement = "Este contexto es responsable de gestionar la informacion recopilada y enviarla para enriquecer y verificar con estos datos la informacion faltante de las propiedades."
+}
+
+BoundedContext EstandarizaciondeDatosContext{
+	domainVisionStatement = "Este contexto es responsable de transformar los datos para que sigan un estándar o una escala común."
+}
+
+BoundedContext InternacionalizacionContext{
+	domainVisionStatement = "Este contexto es responsable de aplicar una serie de reglas a los datos segun el pais y la region en donde se encuentre el cliente."
 }

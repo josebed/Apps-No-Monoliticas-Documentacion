@@ -10,8 +10,7 @@ ContextMap DDDContextMapPDA_ASIS {
 	contains AuditoriadeDatosContext
 	contains EnriquecimientoyVerificaciondeDatosContext
 	contains ValidacionAutomatizadadeDatosContext
-	contains AnalisisdeVentasdePropiedadesContext
-	contains AnalisisdeAlquilerdePropiedadesContext
+	contains AnalisisdeVentasyAlquilerdePropiedadesContext
 	contains ComparativodeVentasdePropiedadesContext
 	contains RecopilaciondeInformaciondePropiedadesContext
 	contains GestiondeInformaciondePropiedadesContext
@@ -42,13 +41,13 @@ ContextMap DDDContextMapPDA_ASIS {
 
 	SistemadeAlmacenamientoContext [D]<-[U] LimpiezayProcesamientodeDatosContext
 
+	SistemadeAlmacenamientoContext [SK]<->[SK] ValidacionAutomatizadadeDatosContext
+
 	LimpiezayProcesamientodeDatosContext [D]<-[U] ValidacionAutomatizadadeDatosContext
 
 	ValidacionAutomatizadadeDatosContext [D]<-[U] AuditoriadeDatosContext
 
-	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeVentasdePropiedadesContext
-
-	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeAlquilerdePropiedadesContext
+	AuditoriadeDatosContext [D]<-[U, OHS] AnalisisdeVentasyAlquilerdePropiedadesContext
 
 	AuditoriadeDatosContext [D]<-[U, OHS] ComparativodeVentasdePropiedadesContext
 }
@@ -69,7 +68,6 @@ BoundedContext SistemadeAlmacenamientoContext{
 	domainVisionStatement = "Este contexto es responsable de almacenar los datos obtenidos de forma automatizada y de recibir la informacion enriquecida y verificada por los investigadores de campo y especializados."
 }
 
-//BoundedContext CapturadeDatosManualContext ya tenemos el metodo pull donde se engloba la captura manual de datos
 BoundedContext CapturadeDatosPullContext{
 	domainVisionStatement = "Este contexto es responsable de recibir la informacion suministrada sobre las propiedades por un agente, ya sea de forma manual o automatizada y enviar los datos a la base de datos de investigacion."
 }
@@ -93,13 +91,9 @@ BoundedContext EnriquecimientoyVerificaciondeDatosContext{
 BoundedContext ValidacionAutomatizadadeDatosContext{
 	domainVisionStatement = "Este contexto es responsable de validar los datos de forma automatizada usando tecnicas de machine learning y tambien bots."
 }
-//BoundedContext MachineLearningContext ya tenemos un contexto para validacion automatizada de datos
-BoundedContext AnalisisdeVentasdePropiedadesContext{
-	domainVisionStatement = "Este contexto es responsable de proveer a los clientes un analisis de la venta de propiedades en una ubicacion geografica especifica segun la informacion validada por auditoria y almacenada en el sistema de almacenamiento."
-}
 
-BoundedContext AnalisisdeAlquilerdePropiedadesContext{
-	domainVisionStatement = "Este contexto es responsable de proveer a los clientes un analisis de los alquileres de propiedades en una ubicacion geografica especifica segun la informacion validada por auditoria y almacenada en el sistema de almacenamiento."
+BoundedContext AnalisisdeVentasyAlquilerdePropiedadesContext{
+	domainVisionStatement = "Este contexto es responsable de proveer a los clientes un analisis de la venta y de los alquileres de propiedades en una ubicacion geografica especifica segun la informacion validada por auditoria y almacenada en el sistema de almacenamiento."
 }
 
 BoundedContext ComparativodeVentasdePropiedadesContext{
