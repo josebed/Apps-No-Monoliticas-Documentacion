@@ -3,12 +3,17 @@
 Domain ProveerInformacionPropiedadesClientes {
   domainVisionStatement = "El modelo representará la información más valiosa y verídica de bienes raíces comerciales para los clientes, de una manera resumida, ordenada y actualizada, que les permitirá tomar decisiones acertadas sobre sus intereses en diferentes propiedades. De esta manera, se verán reflejadas las características principales de propiedades inmobiliarias en diferentes geografías del mundo, su disponibilidad para venta y alquiler e información relevante sobre precios del mercado, basado en transacciones recientes de compraventa y arrendamiento, apoyándose en sistemas de información públicos y de referenciación geográfica, así como de información colectada mediante trabajo de campo, redes sociales, medios de comunicación especializados y comunicación con arrendatarios, propietarios, agentes inmobiliarios y demás actores del mercado. Adicionalmente, según los roles e intereses de los clientes y agentes, podrán acceder a diferentes niveles de información, respetando las leyes de manejo de datos y privacidad de cada país/región. De otro lado agentes de la compañía serán parte esencial en la colección, validación y actualización de la información de los bienes raíces y contarán con medios eficientes para la ejecución de dichas actividades. Dado que la veracidad de la información es crítica para mantener la confianza de los clientes y garantizarles que toman las decisiones basadas en la mejor información disponible, el modelo también soportará la auditoría continua de la información."
 
-  Subdomain RecopilacionInformacionEstructurasFisicas {
+  Subdomain SistemadeAlmacenamiento {
     type = CORE_DOMAIN    
 
   }
 
-  Subdomain InvestigacionDisponibilidadPropiedades {
+   Subdomain RecopilaciondeInformaciondePropiedades {
+    type = CORE_DOMAIN    
+
+  }
+
+  Subdomain InvestigacionDisponibilidad {
     type = CORE_DOMAIN    
   }
 
@@ -17,7 +22,7 @@ Domain ProveerInformacionPropiedadesClientes {
     
   }
 
-  Subdomain InvestigacionInformacionInquilinos {
+  Subdomain InvestigacionInquilinos {
     type = CORE_DOMAIN
    
   }
@@ -29,32 +34,33 @@ Domain ProveerInformacionPropiedadesClientes {
 
 
 
-  Subdomain AnalisisVentasAlquileresUbicacionGeografica {
+  Subdomain AnalisisVentasAlquileresPropiedades {
     type = CORE_DOMAIN
     
   }
 
-  Subdomain ComunicacionAgentesInmobiliariosPropietarios {
+  Subdomain CapturadeDatosPull {
     type = SUPPORTING_DOMAIN
     
   }
 
-  Subdomain GestionInformacionFisicaPropiedades {
+  Subdomain CapturadeDatosPush {
+    type = SUPPORTING_DOMAIN
+    
+  }
+
+
+  Subdomain GestionInformacionPropiedades {
     type = GENERIC_SUBDOMAIN
     
   }
 
-  Subdomain InspeccionInformacionRegistradaEstructuras {
+  Subdomain EnriquecimientoVerificacionDatos {
     type = SUPPORTING_DOMAIN
     
   }
 
-  Subdomain EnriquecimientoVerificacionInformacionColectada {
-    type = SUPPORTING_DOMAIN
-    
-  }
-
-  Subdomain CapturaLimpiezaProcesamientoDatos {
+  Subdomain LimpiezaProcesamientoDatos {
     type = GENERIC_SUBDOMAIN
     
   }
