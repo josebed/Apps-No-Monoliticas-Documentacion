@@ -28,7 +28,7 @@ Este repositorio sigue en general la misma estructura del repositorio de origen.
 Desde el directorio principal ejecute el siguiente comando.
 
 ```bash
-flask --app src/aeroalpes/api run
+flask --app src/propdalpescoleccioncomp/api run
 ```
 
 Siempre puede ejecutarlo en modo DEBUG:
