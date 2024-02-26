@@ -20,7 +20,6 @@ class _FabricaCompania(Fabrica):
             return mapeador.entidad_a_dto(obj)
         else:
             compania: Compania = mapeador.dto_a_entidad(obj)
-            
 
             self.validar_regla(NombreCompNoVacio(compania.nombre))
             

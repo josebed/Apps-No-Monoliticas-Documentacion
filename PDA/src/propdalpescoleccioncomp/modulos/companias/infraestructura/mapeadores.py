@@ -16,7 +16,7 @@ class MapeadorCompania(Mapeador):
         return Compania.__class__
 
     def entidad_a_dto(self, entidad: Compania) -> CompaniaDTO:
-        
+
         compania_dto = CompaniaDTO()
         compania_dto.fecha_creacion = entidad.fecha_creacion
         compania_dto.fecha_actualizacion = entidad.fecha_actualizacion
@@ -24,10 +24,11 @@ class MapeadorCompania(Mapeador):
         compania_dto.nombre = entidad.nombre
         compania_dto.numero = entidad.numero
         compania_dto.tipo = entidad.tipo
-
+        
         return compania_dto
 
     def dto_a_entidad(self, dto: CompaniaDTO) -> Compania:
-        compania = Compania(dto.id, dto.fecha_creacion, dto.fecha_actualizacion, dto.nombre, dto.numero, dto.tipo)
+        compania = Compania(id=dto.id, fecha_creacion=dto.fecha_creacion, fecha_actualizacion=dto.fecha_actualizacion, 
+                            nombre=dto.nombre, numero=dto.numero, tipo=dto.tipo)
         
         return compania

@@ -1,24 +1,26 @@
 from propdalpescoleccioncomp.seedwork.aplicacion.dto import Mapeador as AppMap
 from propdalpescoleccioncomp.seedwork.dominio.repositorios import Mapeador as RepMap
-from propdalpescoleccioncomp.modulos.companias.dominio.entidades import Compania
-from .dto import CompaniaDTO
+from propdalpescoleccioncomp.modulos.locallizacion.dominio.entidades import Localizacion
+from .dto import LocalizacionDTO
 
 from datetime import datetime
 
-class MapeadorCompaniaDTOJson(AppMap):
-    def externo_a_dto(self, externo: dict) -> CompaniaDTO:
-        compania_dto = CompaniaDTO("","","",externo.get('nombre', str), externo.get('numero', str), externo.get('tipo', str))
+class MapeadorLocalizacionDTOJson(AppMap):
+    def externo_a_dto(self, externo: dict) -> LocalizacionDTO:
+        localizacion_dto = LocalizacionDTO("","","",externo.get('ubicacion', str), 
+                                           externo.get('ciudad', str), externo.get('numero', str),
+                                           externo.get('latitud', str), externo.get('longitud', str))
 
-        return compania_dto
+        return localizacion_dto
 
-    def dto_a_externo(self, dto: CompaniaDTO) -> dict:
+    def dto_a_externo(self, dto: LocalizacionDTO) -> dict:
         return dto.__dict__
 
-class MapeadorCompania(RepMap):
+class MapeadorLocalizacion(RepMap):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
 
     def obtener_tipo(self) -> type:
-        return Compania.__class__
+        return Localizacion.__class__
 
     def locacion_a_dict(self, locacion):
         if not locacion:
@@ -32,8 +34,8 @@ class MapeadorCompania(RepMap):
         )
         
 
-    def entidad_a_dto(self, entidad: Compania) -> CompaniaDTO:
-
+    def entidad_a_dto(self, entidad: Localizacion) -> LocalizacionDTO:
+        
         fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
         _id = str(entidad.id)
@@ -58,12 +60,14 @@ class MapeadorCompania(RepMap):
         #         odos.append(OdoDTO(segmentos))
         #     itinerarios.append(ItinerarioDTO(odos))
         
-        return CompaniaDTO(fecha_creacion, fecha_actualizacion, _id, entidad.nombre, entidad.numero, entidad.tipo)
+        return LocalizacionDTO(fecha_creacion, fecha_actualizacion, _id, entidad.ubicacion, entidad.ciudad, entidad.numero, 
+                               entidad.latitud, entidad.longitud)
 
-    def dto_a_entidad(self, dto: CompaniaDTO) -> Compania:
-        compania = Compania(nombre=dto.nombre, numero=dto.numero, tipo=dto.tipo)
+    def dto_a_entidad(self, dto: LocalizacionDTO) -> Localizacion:
+        localizacion = Localizacion(ubicacion=dto.ubicacion, ciudad=dto.ciudad,numero=dto.numero, latitud=dto.latitud,
+                                    longitud=dto.longitud)
         
-        return compania
+        return localizacion
 
 
 

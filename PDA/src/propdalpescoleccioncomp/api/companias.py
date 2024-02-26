@@ -20,7 +20,7 @@ def crear():
 
         map_compania = MapeadorCompaniaDTOJson()
         compania_dto = map_compania.externo_a_dto(crear_dict)
-
+        
         sr = ServicioCompania()
         dto_final = sr.crear_compania(compania_dto)
 
@@ -40,7 +40,10 @@ def crear_asincrona():
 @bp.route('/compania/<id>', methods=('GET',))
 def dar_compania(id=None):
     if id:
-        crear_dict = ""
+        sr = ServicioCompania()
+        map_reserva = MapeadorCompaniaDTOJson()
+        
+        return map_reserva.dto_a_externo(sr.obtener_compania_por_id(id))
     else:
         return [{'message': 'GET!'}]
     

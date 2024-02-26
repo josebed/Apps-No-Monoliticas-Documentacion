@@ -34,7 +34,7 @@ flask --app src/propdalpescoleccioncomp/api run
 Siempre puede ejecutarlo en modo DEBUG:
 
 ```bash
-flask --app src/aeroalpes/api --debug run
+flask --app src/propdalpescoleccioncomp/api --debug run
 ```
 
 ### Ejecutar pruebas

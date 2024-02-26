@@ -17,6 +17,7 @@ def importar_modelos_alchemy():
     import propdalpescoleccioncomp.modulos.precios_dinamicos.infraestructura.dto
     import propdalpescoleccioncomp.modulos.vehiculos.infraestructura.dto
     import propdalpescoleccioncomp.modulos.vuelos.infraestructura.dto
+    import propdalpescoleccioncomp.modulos.companias.infraestructura.dto
 
 def comenzar_consumidor():
     """
